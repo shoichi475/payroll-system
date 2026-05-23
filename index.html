@@ -9,6 +9,7 @@
 
 <body>
 
+<!-- ================= HOME ================= -->
 <div class="container" id="homePage">
 
     <div class="logo-section">
@@ -28,9 +29,9 @@
 
 </div>
 
-<!-- ADD -->
+<!-- ================= ADD ================= -->
 <div class="form-container" id="addPage">
-<h2>ADD EMPLOYEE</h2>
+<h2 class="form-title">ADD EMPLOYEE</h2>
 <form id="addForm">
 
 <input id="fname" placeholder="First Name" required>
@@ -40,7 +41,10 @@
 <input id="dept" placeholder="Department" required>
 <input type="email" id="email" placeholder="Email" required>
 
-<div style="text-align:left;font-size:14px;">Date Of Employment:</div>
+<div style="text-align:left; margin:5px 0; font-size:14px; color:white;">
+Date Of Employment:
+</div>
+
 <input type="date" id="date" required>
 
 <input type="number" id="rate" placeholder="Rate Per Hour" required>
@@ -52,30 +56,32 @@
 </form>
 </div>
 
-<!-- TIME -->
+<!-- ================= TIME ================= -->
 <div class="form-container" id="timePage">
-<h2>TIME IN / OUT</h2>
+<h2 class="form-title">TIME IN / OUT</h2>
 
 <input id="timeID" placeholder="ID">
 <input type="time" id="timeIn">
 <input type="time" id="timeOut">
 
 <button class="submit-btn" onclick="saveTime()">SAVE</button>
-<p id="timeMsg"></p>
+<p id="timeMsg" style="color:#fca5a5"></p>
 
 <button class="back-btn" onclick="backHome()">BACK</button>
 </div>
 
-<!-- FILE -->
+<!-- ================= CHECK FILE ================= -->
 <div class="form-container" id="filePage">
-<h2>EMPLOYEE FILES</h2>
-<div id="fileList"></div>
+<h2 class="form-title">EMPLOYEE FILES</h2>
+
+<div id="fileList" style="text-align:left"></div>
+
 <button class="back-btn" onclick="backHome()">BACK</button>
 </div>
 
-<!-- SEARCH -->
+<!-- ================= SEARCH ================= -->
 <div class="form-container" id="searchPage">
-<h2>SEARCH SALARY</h2>
+<h2 class="form-title">SEARCH SALARY</h2>
 
 <button class="menu-btn" onclick="filterSalary('below')">Below 50,000</button>
 <button class="menu-btn" onclick="filterSalary('above')">Above 50,000</button>
@@ -85,15 +91,15 @@
 <button class="back-btn" onclick="backHome()">BACK</button>
 </div>
 
-<!-- UPDATE -->
+<!-- ================= UPDATE ================= -->
 <div class="form-container" id="updatePage">
 
-<h2>UPDATE EMPLOYEE INFO</h2>
+<h2 class="form-title">UPDATE EMPLOYEE INFO</h2>
 
 <input id="updateID" placeholder="Enter ID">
 <button class="submit-btn" onclick="findEmployee()">SEARCH</button>
 
-<p id="updateMsg"></p>
+<p id="updateMsg" style="color:#fca5a5"></p>
 
 <div id="editForm" style="display:none">
 
@@ -103,7 +109,10 @@
 <input id="udept" placeholder="Department">
 <input id="uemail" placeholder="Email">
 
-<div style="text-align:left;font-size:14px;">Date Of Employment:</div>
+<div style="text-align:left; margin:5px 0; font-size:14px;">
+Date Of Employment:
+</div>
+
 <input id="udate" type="date">
 
 <input id="urate" placeholder="Rate Per Hour">

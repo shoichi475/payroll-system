@@ -1,216 +1,93 @@
-let employees = [];
-let timeRecords = [];
-let selectedEmployee = null;
-
-// NAVIGATION
-function showAdd(){hideAll();addPage.style.display="block";}
-function showTime(){hideAll();timePage.style.display="block";}
-function showFile(){hideAll();filePage.style.display="block";renderFile();}
-function showSearch(){hideAll();searchPage.style.display="block";}
-function showUpdate(){hideAll();updatePage.style.display="block";}
-function backHome(){hideAll();homePage.style.display="block";}
-
-function hideAll(){
-document.querySelectorAll(".form-container")
-.forEach(e=>e.style.display="none");
-homePage.style.display="none";
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
 }
 
-// ADD EMPLOYEE
-addForm.addEventListener("submit",e=>{
-e.preventDefault();
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#020b1f,#07152f,#0c234b,#102d63);
+padding:20px;
+}
 
-employees.push({
-fname:fname.value,
-mname:mname.value,
-lname:lname.value,
-address:address.value,
-id:id.value,
-dept:dept.value,
-email:email.value,
-number:number.value,
-date:date.value,
-rate:+rate.value,
-hours:+hours.value
-});
-
-alert("Saved!");
-e.target.reset();
-});
-
-// FILE
-function renderFile(){
-
-fileList.innerHTML="";
-
-let grouped={};
-
-employees.forEach(emp=>{
-if(!grouped[emp.dept]) grouped[emp.dept]=[];
-grouped[emp.dept].push(emp);
-});
-
-for(let dept in grouped){
-
-fileList.innerHTML += `<h3 style="color:#93c5fd;margin-top:15px">${dept}</h3>`;
-
-grouped[dept].forEach(emp=>{
-
-let salary=emp.rate*emp.hours*22;
-
-fileList.innerHTML+=`
-<pre style="
-color:white;
+.container{
+width:420px;
+padding:40px;
 background:rgba(255,255,255,0.05);
-padding:15px;
-margin:10px 0;
+border-radius:20px;
+text-align:center;
+color:white;
+}
+
+.logo-circle{
+width:100px;
+height:100px;
+margin:auto;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#1d4ed8;
+font-size:35px;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.menu-btn{
+padding:12px;
+border:none;
 border-radius:10px;
-border:1px solid rgba(255,255,255,0.2);
-font-family:monospace;
+background:#153b7a;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.menu-btn:hover{background:#2563eb}
+
+.exit-btn{background:#7f1d1d}
+
+.form-container{
+display:none;
+width:500px;
+padding:30px;
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+color:white;
+text-align:center;
+}
+
+input{
+width:100%;
+margin:5px 0;
+padding:10px;
+border-radius:8px;
+border:none;
+}
+
+.submit-btn,.back-btn{
+width:100%;
+padding:10px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.submit-btn{background:#2563eb;color:white}
+.back-btn{background:#475569;color:white}
+
+#fileList pre{
 text-align:left;
-">
-
-==================================================
-Employee Name        : ${emp.fname} ${emp.mname} ${emp.lname}
-Employee Address     : ${emp.address}
-Employee ID Number   : ${emp.id}
-Department           : ${emp.dept}
-Email                : ${emp.email}
-Contact Number       : ${emp.number}
-Date of Employment   : ${emp.date}
-Rate Per Hour        : ${emp.rate}
-Daily Hours          : ${emp.hours}
-Monthly Salary       : Php ${salary.toFixed(2)}
-==================================================
-</pre>
-`;
-});
-}
-}
-
-// TIME
-function saveTime(){
-
-let emp=employees.find(e=>e.id===timeID.value);
-
-if(!emp){
-timeMsg.innerText="This ID does not exist";
-return;
-}
-
-timeRecords.push({
-id:emp.id,
-in:timeIn.value,
-out:timeOut.value
-});
-
-timeMsg.innerText="Time saved!";
-}
-
-// SEARCH
-function filterSalary(type){
-
-searchResult.innerHTML="";
-
-employees.forEach(emp=>{
-
-let salary=emp.rate*emp.hours*22;
-
-if(type==="below" && salary<50000 ||
-type==="above" && salary>=50000){
-
-searchResult.innerHTML+=`
-<div style="border:1px solid white;padding:10px;margin:10px;border-radius:10px;">
-${emp.fname} ${emp.mname} ${emp.lname}<br>
-Salary: ₱${salary.toFixed(2)}
-</div>
-`;
-}
-});
-}
-
-// SEARCH NAME
-function searchByName(){
-
-searchResult.innerHTML="";
-
-let search=searchName.value.toLowerCase();
-
-employees.forEach(emp=>{
-
-let full=`${emp.fname} ${emp.mname} ${emp.lname}`.toLowerCase();
-
-if(full.includes(search)){
-searchResult.innerHTML+=`
-<div style="border:1px solid white;padding:10px;margin:10px;border-radius:10px;">
-${full}<br>ID: ${emp.id}
-</div>
-`;
-}
-});
-}
-
-// SEARCH ID
-function searchByID(){
-
-searchResult.innerHTML="";
-
-let emp=employees.find(e=>e.id===searchID.value);
-
-if(emp){
-searchResult.innerHTML+=`
-<div style="border:1px solid white;padding:10px;margin:10px;border-radius:10px;">
-${emp.fname} ${emp.mname} ${emp.lname}<br>ID: ${emp.id}
-</div>
-`;
-}else{
-searchResult.innerHTML="Employee not found";
-}
-}
-
-// UPDATE
-function findEmployee(){
-
-let emp=employees.find(e=>e.id===updateID.value);
-
-if(!emp){
-updateMsg.innerText="Employee not found";
-return;
-}
-
-selectedEmployee=emp;
-
-editForm.style.display="block";
-
-ufname.value=emp.fname;
-umname.value=emp.mname;
-ulname.value=emp.lname;
-uaddress.value=emp.address;
-udept.value=emp.dept;
-uemail.value=emp.email;
-unumber.value=emp.number;
-udate.value=emp.date;
-urate.value=emp.rate;
-uhours.value=emp.hours;
-}
-
-function saveUpdate(){
-
-selectedEmployee.fname=ufname.value;
-selectedEmployee.mname=umname.value;
-selectedEmployee.lname=ulname.value;
-selectedEmployee.address=uaddress.value;
-selectedEmployee.dept=udept.value;
-selectedEmployee.email=uemail.value;
-selectedEmployee.number=unumber.value;
-selectedEmployee.date=udate.value;
-selectedEmployee.rate=+urate.value;
-selectedEmployee.hours=+uhours.value;
-
-alert("Updated!");
-}
-
-// EXIT
-function exitSystem(){
-alert("Close tab manually.");
 }

@@ -9,11 +9,14 @@
 
 <body>
 
+<!-- ================= HOME ================= -->
 <div class="container" id="homePage">
 
-    <div class="logo-circle">PS</div>
-    <h1>PAYROLL SYSTEM</h1>
-    <p>Employee Record & Salary Management</p>
+    <div class="logo-section">
+        <div class="logo-circle">PS</div>
+        <h1>PAYROLL SYSTEM</h1>
+        <p>Employee Record & Salary Management</p>
+    </div>
 
     <div class="menu">
         <button class="menu-btn" onclick="showAdd()">Add New Employee</button>
@@ -26,102 +29,98 @@
 
 </div>
 
-<!-- ADD -->
+<!-- ================= ADD ================= -->
 <div class="form-container" id="addPage">
-<h2>ADD EMPLOYEE</h2>
+<h2 class="form-title">ADD EMPLOYEE</h2>
 
 <form id="addForm">
 
 <input id="fname" placeholder="First Name" required>
-<input id="mname" placeholder="Middle Name" required>
 <input id="lname" placeholder="Last Name" required>
-
 <input id="address" placeholder="Address" required>
 <input id="id" placeholder="ID" required>
 <input id="dept" placeholder="Department" required>
-
-<input id="email" placeholder="Email" required>
-<input id="number" placeholder="11-digit Number" required>
+<input type="email" id="email" placeholder="Email" required>
 
 <input type="date" id="date" required>
 
 <input type="number" id="rate" placeholder="Rate Per Hour" required>
 <input type="number" id="hours" placeholder="Daily Hours" required>
 
-<button>Save</button>
-<button type="button" onclick="backHome()">Back</button>
+<button class="submit-btn">SAVE</button>
+<button type="button" class="back-btn" onclick="backHome()">BACK</button>
 
 </form>
 </div>
 
-<!-- TIME -->
+<!-- ================= TIME ================= -->
 <div class="form-container" id="timePage">
-<h2>TIME IN / OUT</h2>
+<h2 class="form-title">TIME IN / OUT</h2>
 
 <input id="timeID" placeholder="ID">
 <input type="time" id="timeIn">
 <input type="time" id="timeOut">
 
-<button onclick="saveTime()">Save</button>
+<button class="submit-btn" onclick="saveTime()">SAVE</button>
 <p id="timeMsg"></p>
 
-<button onclick="backHome()">Back</button>
+<button class="back-btn" onclick="backHome()">BACK</button>
 </div>
 
-<!-- FILE -->
+<!-- ================= FILE ================= -->
 <div class="form-container" id="filePage">
-<h2>EMPLOYEE FILES</h2>
+<h2 class="form-title">EMPLOYEE FILES</h2>
 
 <div id="fileList"></div>
 
-<button onclick="backHome()">Back</button>
+<button class="back-btn" onclick="backHome()">BACK</button>
 </div>
 
-<!-- SEARCH -->
+<!-- ================= SEARCH ================= -->
 <div class="form-container" id="searchPage">
-<h2>SEARCH</h2>
+<h2 class="form-title">SEARCH SALARY</h2>
 
-<button onclick="filterSalary('below')">Below 50K</button>
-<button onclick="filterSalary('above')">Above 50K</button>
+<button class="menu-btn" onclick="filterSalary('below')">Below 50,000</button>
+<button class="menu-btn" onclick="filterSalary('above')">Above 50,000</button>
 
-<input id="searchName" placeholder="Search Name">
-<button onclick="searchByName()">Search</button>
+<input id="searchName" placeholder="Search by Name">
+<button class="menu-btn" onclick="searchByName()">SEARCH NAME</button>
 
-<input id="searchID" placeholder="Search ID">
-<button onclick="searchByID()">Search</button>
+<input id="searchID" placeholder="Search by ID">
+<button class="menu-btn" onclick="searchByID()">SEARCH ID</button>
 
 <div id="searchResult"></div>
 
-<button onclick="backHome()">Back</button>
+<button class="back-btn" onclick="backHome()">BACK</button>
 </div>
 
-<!-- UPDATE -->
+<!-- ================= UPDATE ================= -->
 <div class="form-container" id="updatePage">
-<h2>UPDATE</h2>
+
+<h2 class="form-title">UPDATE EMPLOYEE INFO</h2>
 
 <input id="updateID" placeholder="Enter ID">
-<button onclick="findEmployee()">Search</button>
+<button class="submit-btn" onclick="findEmployee()">SEARCH</button>
 
 <p id="updateMsg"></p>
 
 <div id="editForm" style="display:none">
 
 <input id="ufname">
-<input id="umname">
 <input id="ulname">
 <input id="uaddress">
 <input id="udept">
 <input id="uemail">
-<input id="unumber">
 <input id="udate" type="date">
 <input id="urate">
 <input id="uhours">
 
-<button onclick="saveUpdate()">Save</button>
+<button class="submit-btn" onclick="saveUpdate()">SAVE CHANGES</button>
 
 </div>
 
-<button onclick="backHome()">Back</button>
+<button class="back-btn" onclick="backHome()">BACK</button>
+
 </div>
 
 <script src="script.js"></script>

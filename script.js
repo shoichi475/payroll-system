@@ -21,13 +21,11 @@ e.preventDefault();
 
 employees.push({
 fname:fname.value,
-mname:mname.value,
 lname:lname.value,
 address:address.value,
 id:id.value,
 dept:dept.value,
 email:email.value,
-number:number.value,
 date:date.value,
 rate:+rate.value,
 hours:+hours.value
@@ -37,12 +35,12 @@ alert("Saved!");
 e.target.reset();
 });
 
-// CHECK FILE (ORIGINAL FORMAT PRESERVED)
+// CHECK FILE
 function renderFile(){
 
 fileList.innerHTML="";
 
-let grouped={};
+let grouped = {};
 
 employees.forEach(emp=>{
 if(!grouped[emp.dept]) grouped[emp.dept]=[];
@@ -70,12 +68,11 @@ text-align:left;
 ">
 
 ==================================================
-Employee Name        : ${emp.fname} ${emp.mname} ${emp.lname}
+Employee Name        : ${emp.fname} ${emp.lname}
 Employee Address     : ${emp.address}
 Employee ID Number   : ${emp.id}
 Department           : ${emp.dept}
 Email                : ${emp.email}
-Contact Number       : ${emp.number}
 Date of Employment   : ${emp.date}
 Rate Per Hour        : ${emp.rate.toFixed(2)}
 Daily Hours          : ${emp.hours}
@@ -107,7 +104,7 @@ out:timeOut.value
 timeMsg.innerText="Time saved!";
 }
 
-// SEARCH SALARY
+// SEARCH
 function filterSalary(type){
 
 searchResult.innerHTML="";
@@ -121,54 +118,13 @@ type==="above" && salary>=50000){
 
 searchResult.innerHTML+=`
 <div style="border:1px solid white;padding:10px;margin:10px;border-radius:10px;">
-${emp.fname} ${emp.mname} ${emp.lname}<br>
+${emp.fname} ${emp.lname}<br>
 Salary: ₱${salary.toFixed(2)}
 </div>
 `;
 }
 
 });
-}
-
-// SEARCH NAME
-function searchByName(){
-
-searchResult.innerHTML="";
-
-let search = searchName.value.toLowerCase();
-
-employees.forEach(emp=>{
-
-let full = `${emp.fname} ${emp.mname} ${emp.lname}`.toLowerCase();
-
-if(full.includes(search)){
-
-searchResult.innerHTML+=`
-<div style="border:1px solid white;padding:10px;margin:10px;border-radius:10px;">
-${full}<br>ID: ${emp.id}
-</div>
-`;
-}
-
-});
-}
-
-// SEARCH ID
-function searchByID(){
-
-searchResult.innerHTML="";
-
-let emp = employees.find(e=>e.id===searchID.value);
-
-if(emp){
-searchResult.innerHTML+=`
-<div style="border:1px solid white;padding:10px;margin:10px;border-radius:10px;">
-${emp.fname} ${emp.mname} ${emp.lname}<br>ID: ${emp.id}
-</div>
-`;
-}else{
-searchResult.innerHTML="Employee not found";
-}
 }
 
 // UPDATE
@@ -186,13 +142,10 @@ selectedEmployee = emp;
 editForm.style.display="block";
 
 ufname.value=emp.fname;
-umname.value=emp.mname;
 ulname.value=emp.lname;
 uaddress.value=emp.address;
 udept.value=emp.dept;
 uemail.value=emp.email;
-unumber.value=emp.number;
-udate.value=emp.date;
 urate.value=emp.rate;
 uhours.value=emp.hours;
 }
@@ -200,13 +153,10 @@ uhours.value=emp.hours;
 function saveUpdate(){
 
 selectedEmployee.fname=ufname.value;
-selectedEmployee.mname=umname.value;
 selectedEmployee.lname=ulname.value;
 selectedEmployee.address=uaddress.value;
 selectedEmployee.dept=udept.value;
 selectedEmployee.email=uemail.value;
-selectedEmployee.number=unumber.value;
-selectedEmployee.date=udate.value;
 selectedEmployee.rate=+urate.value;
 selectedEmployee.hours=+uhours.value;
 

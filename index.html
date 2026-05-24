@@ -9,7 +9,7 @@
 
 <body>
 
-<!-- HOME -->
+<!-- ================= HOME ================= -->
 <div class="container" id="homePage">
 
     <div class="logo-section">
@@ -29,44 +29,38 @@
 
 </div>
 
-<!-- ADD -->
+<!-- ================= ADD ================= -->
 <div class="form-container" id="addPage">
-
 <h2 class="form-title">ADD EMPLOYEE</h2>
-
 <form id="addForm">
 
 <input id="fname" placeholder="First Name" required>
 <input id="mname" placeholder="Middle Name" required>
 <input id="lname" placeholder="Last Name" required>
-
 <input id="address" placeholder="Address" required>
-
 <input id="id" placeholder="0000-000" required>
-
 <input id="dept" placeholder="Department" required>
-
 <input type="email" id="email" placeholder="Email" required>
-
 <input id="number" placeholder="11-digit Number" required>
+
+<div style="text-align:left;margin:5px 0;font-size:14px;">
+Date Of Employment:
+</div>
 
 <input type="date" id="date" required>
 
 <input type="number" id="rate" placeholder="Rate Per Hour" required>
-
 <input type="number" id="hours" placeholder="Daily Hours" required>
 
 <button class="submit-btn">SAVE</button>
 <button type="button" class="back-btn" onclick="backHome()">BACK</button>
 
 </form>
-
 </div>
 
-<!-- TIME -->
+<!-- ================= TIME ================= -->
 <div class="form-container" id="timePage">
-
-<h2 class="form-title">TIME IN / OUT</h2>
+<h2 class="form-title">TIME IN / TIME OUT</h2>
 
 <input id="timeID" placeholder="ID">
 <input type="time" id="timeIn">
@@ -74,25 +68,20 @@
 
 <button class="submit-btn" onclick="saveTime()">SAVE</button>
 <p id="timeMsg"></p>
-
 <button class="back-btn" onclick="backHome()">BACK</button>
-
 </div>
 
-<!-- FILE -->
+<!-- ================= FILE ================= -->
 <div class="form-container" id="filePage">
-
 <h2 class="form-title">EMPLOYEE FILES</h2>
 
 <div id="fileList"></div>
 
 <button class="back-btn" onclick="backHome()">BACK</button>
-
 </div>
 
-<!-- SEARCH -->
+<!-- ================= SEARCH ================= -->
 <div class="form-container" id="searchPage">
-
 <h2 class="form-title">SEARCH EMPLOYEE</h2>
 
 <button class="menu-btn" onclick="filterSalary('below')">Below 50,000</button>
@@ -107,12 +96,10 @@
 <div id="searchResult"></div>
 
 <button class="back-btn" onclick="backHome()">BACK</button>
-
 </div>
 
-<!-- UPDATE -->
+<!-- ================= UPDATE ================= -->
 <div class="form-container" id="updatePage">
-
 <h2 class="form-title">UPDATE EMPLOYEE INFO</h2>
 
 <input id="updateID" placeholder="Enter ID">
@@ -138,7 +125,6 @@
 </div>
 
 <button class="back-btn" onclick="backHome()">BACK</button>
-
 </div>
 
 <script src="script.js"></script>

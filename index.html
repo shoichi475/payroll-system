@@ -31,55 +31,36 @@
 
 <!-- ADD -->
 <div class="form-container" id="addPage">
-
 <h2 class="form-title">ADD EMPLOYEE</h2>
 
 <form id="addForm">
 
 <input id="fname" placeholder="First Name" required>
-<small id="fnameError" class="error"></small>
-
 <input id="mname" placeholder="Middle Name" required>
-<small id="mnameError" class="error"></small>
-
 <input id="lname" placeholder="Last Name" required>
-<small id="lnameError" class="error"></small>
 
 <input id="address" placeholder="Address" required>
-<small id="addressError" class="error"></small>
 
-<input id="id" placeholder="0000-000" required>
-<small id="idError" class="error"></small>
-
+<input id="id" placeholder="Employee ID (0000-000)" required>
 <input id="dept" placeholder="Department" required>
-<small id="deptError" class="error"></small>
 
-<input type="email" id="email" placeholder="Email" required>
-<small id="emailError" class="error"></small>
-
+<input id="email" placeholder="Email" required>
 <input id="number" placeholder="11-digit Number" required>
-<small id="numberError" class="error"></small>
 
-<div class="label">Date Of Employment:</div>
+<div>Date Of Employment:</div>
 <input type="date" id="date" required>
-<small id="dateError" class="error"></small>
 
 <input type="number" id="rate" placeholder="Rate Per Hour" required>
-<small id="rateError" class="error"></small>
-
 <input type="number" id="hours" placeholder="Daily Hours" required>
-<small id="hoursError" class="error"></small>
 
 <button class="submit-btn">SAVE</button>
 <button type="button" class="back-btn" onclick="backHome()">BACK</button>
 
 </form>
-
 </div>
 
 <!-- TIME -->
 <div class="form-container" id="timePage">
-
 <h2 class="form-title">TIME IN / OUT</h2>
 
 <input id="timeID" placeholder="ID">
@@ -90,35 +71,28 @@
 <p id="timeMsg"></p>
 
 <button class="back-btn" onclick="backHome()">BACK</button>
-
 </div>
 
 <!-- FILE -->
 <div class="form-container" id="filePage">
-
 <h2 class="form-title">EMPLOYEE FILES</h2>
 
 <div id="fileList"></div>
 
 <button class="back-btn" onclick="backHome()">BACK</button>
-
 </div>
 
 <!-- SEARCH -->
 <div class="form-container" id="searchPage">
-
 <h2 class="form-title">SEARCH EMPLOYEE</h2>
 
 <input id="searchBar" placeholder="Search name, ID, or salary">
 
-<button class="menu-btn" onclick="searchEmployee()">
-SEARCH
-</button>
+<button class="menu-btn" onclick="searchEmployee()">SEARCH</button>
 
 <div id="searchResult"></div>
 
 <button class="back-btn" onclick="backHome()">BACK</button>
-
 </div>
 
 <!-- UPDATE -->
@@ -140,13 +114,11 @@ SEARCH
 <input id="udept">
 <input id="uemail">
 <input id="unumber">
-<input id="udate" type="date">
+<input type="date" id="udate">
 <input id="urate">
 <input id="uhours">
 
-<button class="submit-btn" onclick="saveUpdate()">
-SAVE CHANGES
-</button>
+<button class="submit-btn" onclick="saveUpdate()">SAVE CHANGES</button>
 
 </div>
 

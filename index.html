@@ -1,357 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Payroll System</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
- 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="sidebar-header">
-      <div class="logo-circle">PS</div>
-      <div class="sidebar-title">
-        <h1>PAYROLL SYSTEM</h1>
-        <p>Employee Record & Salary Management</p>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-circle">PS</div>
+    <div class="sidebar-title">
+      <h1>PAYROLL SYSTEM</h1>
+      <p>Employee Record & Salary Management</p>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <button class="nav-item active" id="nav-home" onclick="showPage('home','HOME')">HOME</button>
+    <button class="nav-item" id="nav-add" onclick="showPage('add','NEW EMPLOYEE')">ADD NEW EMPLOYEE</button>
+    <button class="nav-item" id="nav-time" onclick="showPage('time','TIME IN & OUT')">TIME IN & OUT</button>
+    <button class="nav-item" id="nav-file" onclick="showPage('file','EMPLOYEE FILES')">CHECK FILE</button>
+    <button class="nav-item" id="nav-search" onclick="showPage('search','SEARCH')">SEARCH</button>
+    <button class="nav-item" id="nav-update" onclick="showPage('update','UPDATE INFORMATION')">UPDATE</button>
+  </nav>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar"><h2 id="pageTitle">HOME</h2></div>
+
+  <div class="content">
+
+    <!-- HOME -->
+    <div class="page active" id="page-home">
+      <div class="card">
+        <h1>Welcome to Payroll System</h1>
+        <p>Manage employees, attendance, and salary efficiently.</p>
       </div>
     </div>
-    <nav class="sidebar-nav">
-      <button class="nav-item active" id="nav-home"   onclick="showPage('home','HOME')">HOME</button>
-      <button class="nav-item"        id="nav-add"    onclick="showPage('add','NEW EMPLOYEE')">ADD NEW EMPLOYEE</button>
-      <button class="nav-item"        id="nav-time"   onclick="showPage('time','BOOKENDS')">TIME IN &amp; TIME OUT</button>
-      <button class="nav-item"        id="nav-file"   onclick="showPage('file','EMPLOYEE FILES')">CHECK FILE</button>
-      <button class="nav-item"        id="nav-search" onclick="showPage('search','SEARCH')">SEARCH</button>
-      <button class="nav-item"        id="nav-update" onclick="showPage('update','UPDATE INFORMATION OF EMPLOYEE')">UPDATE INFORMATION</button>
-    </nav>
-  </div>
-   
-  <!-- MAIN CONTAINER -->
-  <div class="main">
-    <div class="topbar"><h2 id="pageTitle">HOME</h2></div>
-    <div class="content">
-   
-      <!-- HOME PAGE -->
-      <div class="page active" id="page-home">
-        <!-- Hero Introduction Card -->
-        <div class="card home-hero glow-purple">
-          <h1 class="hero-title">Welcome to the Employee Management System</h1>
-          <p class="hero-subtitle">
-            The Employee Management System is designed to help organizations efficiently manage employee records, attendance, and salary information. With a simple and user-friendly interface, the system provides quick access to employee data, making workforce management more organized, accurate, and convenient.
-          </p>
+
+    <!-- ADD -->
+    <div class="page" id="page-add">
+      <form onsubmit="submitAdd(event)">
+        <div class="card">
+          <h3>Employee Info</h3>
+
+          <input id="fname" placeholder="First Name">
+          <input id="mname" placeholder="Middle Name">
+          <input id="lname" placeholder="Last Name">
+          <input id="address" placeholder="Address">
+          <input id="empid" placeholder="0000-000">
+          <input id="dept" placeholder="Department">
+          <input id="email" placeholder="Email">
+          <input id="number" placeholder="11-digit number">
+          <input id="date" type="date">
+          <input id="rate" type="number" placeholder="Rate">
+          <input id="hours" type="number" placeholder="Hours">
+
+          <button type="submit">SAVE</button>
         </div>
+      </form>
+    </div>
 
-        <!-- Features Section -->
-        <h2 class="features-heading">Features</h2>
-        <div class="features-grid">
-          
-          <div class="feature-card glow-blue">
-            <div class="feature-icon icon-blue">01</div>
-            <h3>Add Employees</h3>
-            <p>Easily register and store employee information in the system.</p>
-          </div>
-
-          <div class="feature-card glow-green">
-            <div class="feature-icon icon-green">02</div>
-            <h3>Time Monitoring</h3>
-            <p>Track employee attendance and working hours accurately with Time In and Time Out monitoring.</p>
-          </div>
-
-          <div class="feature-card glow-purple">
-            <div class="feature-icon icon-purple">03</div>
-            <h3>Salary Management</h3>
-            <p>View employee records, including personal information, monthly salary, and current salary details.</p>
-          </div>
-
-          <div class="feature-card glow-blue">
-            <div class="feature-icon icon-blue">04</div>
-            <h3>Employee Search</h3>
-            <p>Quickly locate specific employees using the search function.</p>
-          </div>
-
-          <div class="feature-card glow-green">
-            <div class="feature-icon icon-green">05</div>
-            <h3>Update Information</h3>
-            <p>Modify and maintain employee records to ensure information remains accurate and up to date.</p>
-          </div>
-
-        </div>
+    <!-- TIME -->
+    <div class="page" id="page-time">
+      <div class="card">
+        <input id="timeID" placeholder="Employee ID">
+        <input id="timeIn" type="time">
+        <input id="timeOut" type="time">
+        <button onclick="saveTime()">SAVE TIME</button>
+        <p id="timeMsg"></p>
       </div>
-   
-      <!-- ADD EMPLOYEE -->
-      <div class="page" id="page-add">
-        <form id="addForm" onsubmit="submitAdd(event)">
-   
-          <div class="card glow-blue">
-            <div class="card-title">Full Name</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Last Name:</label>
-                <input id="lname" placeholder="">
-              </div>
-              <div class="form-group">
-                <label>First Name:</label>
-                <input id="fname" placeholder="">
-              </div>
-              <div class="form-group">
-                <label>Middle Name:</label>
-                <input id="mname" placeholder="">
-              </div>
-            </div>
-            <span class="error-msg" id="nameError"></span>
-          </div>
-   
-          <div class="card glow-blue">
-            <div class="card-title">Permanent Address</div>
-            <div class="form-row form-full">
-              <div class="form-group">
-                <label>Address:</label>
-                <input id="address" placeholder="">
-              </div>
-            </div>
-            <span class="error-msg" id="addressError"></span>
-          </div>
-   
-          <div class="card glow-blue">
-            <div class="card-title">Employee ID:</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>ID:</label>
-                <input id="empid" placeholder="0000-000" style="max-width:220px">
-              </div>
-            </div>
-            <span class="error-msg" id="idError"></span>
-          </div>
-   
-          <div class="card glow-blue">
-            <div class="card-title">Department</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Department:</label>
-                <input id="dept" placeholder="" style="max-width:320px">
-              </div>
-            </div>
-            <span class="error-msg" id="deptError"></span>
-          </div>
-   
-          <div class="card glow-blue">
-            <div class="card-title">Personal Contact Information:</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Email Address:</label>
-                <input id="email" type="email" placeholder="">
-              </div>
-              <div class="form-group">
-                <label>Mobile Number:</label>
-                <input id="number" placeholder="">
-              </div>
-            </div>
-            <span class="error-msg" id="contactError"></span>
-          </div>
-   
-          <div class="card glow-blue">
-            <div class="card-title">Date of Employment:</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Date:</label>
-                <input id="date" type="date" style="max-width:220px">
-              </div>
-            </div>
-            <span class="error-msg" id="dateError"></span>
-          </div>
-   
-          <div class="card glow-blue">
-            <div class="card-title">Rate Per Hour:</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Rate:</label>
-                <input id="rate" type="number" placeholder="" style="max-width:180px">
-              </div>
-            </div>
-            <span class="error-msg" id="rateError"></span>
-          </div>
-   
-          <div class="card glow-blue">
-            <div class="card-title">Daily Hours:</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Hours:</label>
-                <input id="hours" type="number" placeholder="" style="max-width:180px">
-              </div>
-            </div>
-            <span class="error-msg" id="hoursError"></span>
-            <div class="btn-row">
-              <button type="submit" class="btn btn-primary">SAVE DATA</button>
-            </div>
-          </div>
-   
-        </form>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="page" id="page-search">
+      <div class="card">
+        <input id="searchID" placeholder="Search ID">
+        <input id="searchName" placeholder="Search Name">
+        <input id="searchSalary" placeholder="Salary">
+        <button onclick="doSearch()">SEARCH</button>
+        <div id="searchResult"></div>
       </div>
-   
-      <!-- TIME IN/OUT -->
-      <div class="page" id="page-time">
-        <div class="card time-card glow-green">
-          <div class="form-group" style="margin-bottom:20px">
-            <label>ID:</label>
-            <input id="timeID" placeholder="" style="max-width:200px">
-          </div>
-          <div class="form-group" style="margin-bottom:12px">
-            <label>Time In:</label>
-            <input type="time" id="timeIn" style="max-width:180px">
-          </div>
-          <div class="form-group" style="margin-bottom:20px">
-            <label>Time Out:</label>
-            <input type="time" id="timeOut" style="max-width:180px">
-          </div>
-          <button class="btn btn-primary" onclick="saveTime()">SAVE TIME</button>
-          <p id="timeMsg" style="margin-top:12px;font-size:13px;"></p>
-        </div>
+    </div>
+
+    <!-- FILE -->
+    <div class="page" id="page-file">
+      <div class="card">
+        <button onclick="renderFullFile()">LOAD FILES</button>
+        <div id="fileList"></div>
       </div>
-   
-      <!-- CHECK FILE -->
-      <div class="page" id="page-file">
-   
-        <!-- Sub-menu -->
-        <div id="fileMenu" style="display:flex;gap:24px;justify-content:center;margin-top:80px;">
-          <div class="file-option-card glow-purple" onclick="showFileSubPage('salary')">
-            Check Employee Current Salary
-          </div>
-          <div class="file-option-card glow-purple" onclick="showFileSubPage('full')">
-            Check File
-          </div>
-        </div>
-   
-        <!-- Salary sub-page -->
-        <div id="fileSalaryView" style="display:none;">
-          <button class="btn btn-secondary" style="margin-bottom:20px;font-size:12px;" onclick="backToFileMenu()">← BACK</button>
-          <div id="salaryList"></div>
-        </div>
-   
-        <!-- Full file sub-page -->
-        <div id="fileFullView" style="display:none;">
-          <button class="btn btn-secondary" style="margin-bottom:20px;font-size:12px;" onclick="backToFileMenu()">← BACK</button>
-          <div id="fileList"></div>
-        </div>
-   
-      </div>
-   
-      <!-- SEARCH -->
-      <div class="page" id="page-search">
-        <div class="search-top-row">
-          <div class="search-block glow-blue">
-            <div class="search-block-title">Search ID</div>
-            <div class="form-group">
-              <label>ID:</label>
-              <input id="searchID" placeholder="">
-            </div>
-          </div>
-          <div class="search-block glow-blue">
-            <div class="search-block-title">Search Name</div>
-            <div class="form-group">
-              <label>Name:</label>
-              <input id="searchName" placeholder="">
-            </div>
-          </div>
-          <div class="search-block glow-purple">
-            <div class="search-block-title">Search Salary</div>
-            <div class="form-group">
-              <label>Salary:</label>
-              <input id="searchSalary" placeholder="50000" type="number">
-            </div>
-            <div class="salary-btns">
-              <button class="btn btn-primary" onclick="filterSalary('below')">BELOW</button>
-              <button class="btn btn-primary" onclick="filterSalary('above')">ABOVE</button>
-            </div>
-          </div>
-        </div>
-        <div class="search-btn-row">
-          <button class="btn btn-primary" style="padding:12px 60px" onclick="doSearch()">SEARCH</button>
-        </div>
-        <div class="result-box glow-blue" id="searchResult">(DISPLAY RESULT)</div>
-      </div>
-   
-      <!-- UPDATE -->
-      <div class="page" id="page-update">
-        <div class="update-top glow-green">
-          <label>INPUT ID:</label>
-          <input id="updateID" placeholder="">
-          <button class="btn btn-primary" onclick="findEmployee()">FIND</button>
-          <span id="updateMsg"></span>
-        </div>
-   
+    </div>
+
+    <!-- UPDATE -->
+    <div class="page" id="page-update">
+      <div class="card">
+        <input id="updateID" placeholder="Employee ID">
+        <button onclick="findEmployee()">FIND</button>
+
         <div id="editForm" style="display:none">
-          <form onsubmit="saveUpdate(event)">
-   
-            <div class="card glow-green">
-              <div class="card-title">Full Name</div>
-              <div class="form-row">
-                <div class="form-group"><label>Last Name:</label><input id="ulname"></div>
-                <div class="form-group"><label>First Name:</label><input id="ufname"></div>
-                <div class="form-group"><label>Middle Name:</label><input id="umname"></div>
-              </div>
-            </div>
-   
-            <div class="card glow-green">
-              <div class="card-title">Permanent Address</div>
-              <div class="form-row form-full">
-                <div class="form-group"><label>Address:</label><input id="uaddress"></div>
-              </div>
-            </div>
-   
-            <div class="card glow-green">
-              <div class="card-title">Employee ID:</div>
-              <div class="form-row">
-                <div class="form-group"><label>ID:</label><input id="uemp_id" style="max-width:220px"></div>
-              </div>
-            </div>
-   
-            <div class="card glow-green">
-              <div class="card-title">Department</div>
-              <div class="form-row">
-                <div class="form-group"><label>Department:</label><input id="udept" style="max-width:320px"></div>
-              </div>
-            </div>
-   
-            <div class="card glow-green">
-              <div class="card-title">Personal Contact Information:</div>
-              <div class="form-row">
-                <div class="form-group"><label>Email Address:</label><input id="uemail"></div>
-                <div class="form-group"><label>Mobile Number:</label><input id="unumber"></div>
-              </div>
-            </div>
-   
-            <div class="card glow-green">
-              <div class="card-title">Date of Employment:</div>
-              <div class="form-row">
-                <div class="form-group"><label>Date:</label><input id="udate" type="date" style="max-width:220px"></div>
-              </div>
-            </div>
-   
-            <div class="card glow-green">
-              <div class="card-title">Rate Per Hour:</div>
-              <div class="form-row">
-                <div class="form-group"><label>Rate:</label><input id="urate" type="number" style="max-width:180px"></div>
-              </div>
-            </div>
-   
-            <div class="card glow-green">
-              <div class="card-title">Daily Hours:</div>
-              <div class="form-row">
-                <div class="form-group"><label>Hours:</label><input id="uhours" type="number" style="max-width:180px"></div>
-              </div>
-              <div class="btn-row">
-                <button type="submit" class="btn btn-primary">SAVE DATA</button>
-              </div>
-            </div>
-   
-          </form>
+          <input id="ufname">
+          <input id="umname">
+          <input id="ulname">
+          <input id="uaddress">
+          <input id="uemp_id">
+          <input id="udept">
+          <input id="uemail">
+          <input id="unumber">
+          <input id="udate" type="date">
+          <input id="urate" type="number">
+          <input id="uhours" type="number">
+          <button onclick="saveUpdate(event)">SAVE</button>
         </div>
       </div>
-   
     </div>
-  </div>
 
-  <script src="script.js"></script>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
